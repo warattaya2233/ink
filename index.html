@@ -3,7 +3,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KNI ACCESS SYSTEM</title><style>
-
 *{
 margin:0;
 padding:0;
@@ -33,7 +32,7 @@ background-size:30px 30px;
 }
 
 .box{
-width:380px;
+width:420px;
 border:1px solid #00ff88;
 padding:25px;
 background:rgba(0,0,0,.9);
@@ -45,10 +44,19 @@ z-index:1;
 text-align:center;
 margin-bottom:20px;
 font-size:24px;
+font-weight:bold;
+}
+
+.hint-box{
+margin-bottom:15px;
+padding:10px;
+border:1px dashed #00ff88;
+font-size:14px;
+line-height:1.6;
 }
 
 .status{
-margin-bottom:20px;
+margin-bottom:15px;
 font-size:14px;
 }
 
@@ -76,7 +84,7 @@ opacity:.8;
 }
 
 #error{
-color:red;
+color:#ff4d4d;
 margin-top:10px;
 text-align:center;
 }
@@ -88,30 +96,47 @@ animation:blink 1s infinite;
 @keyframes blink{
 50%{opacity:.3;}
 }
-
-</style></head><body><div class="box"><div class="title">
+</style></head>
+<body><div class="box"><div class="title">
 KNI ACCESS SYSTEM
+</div><div class="hint-box">
+ERROR 404 : หาพี่ไม่เจอ<br>
+Binary : 01001011 01001110 01001001
 </div><div class="status scan">
 STATUS : WAITING AUTHENTICATION...
-</div><input type="text" id="hint" placeholder="ENTER HINT CODE"><input type="text" id="name" placeholder="ENTER SENIOR NAME"><button onclick="verify()">
+</div><input
+type="text"
+id="hint"
+placeholder="ENTER BINARY CODE">
+
+<input
+type="text"
+id="name"
+placeholder="ENTER SENIOR NAME">
+
+<button onclick="verify()">
 VERIFY ACCESS
 </button><div id="error"></div></div><script>
 
 function verify(){
 
 let hint =
-document.getElementById("hint").value.trim().toUpperCase();
+document.getElementById("hint").value.trim();
 
 let name =
 document.getElementById("name").value.trim().toUpperCase();
 
-if(hint==="KNI" && name==="INK"){
+if(
+hint === "01001011 01001110 01001001"
+&&
+name === "INK"
+){
 
-window.location.href="mission.html";
+window.location.href = "mission.html";
 
 }else{
 
-document.getElementById("error").innerHTML=
+document.getElementById("error").innerHTML =
 "ERROR 404 : ACCESS DENIED";
 
 }
