@@ -101,7 +101,6 @@ animation:blink 1s infinite;
 KNI ACCESS SYSTEM
 </div><div class="hint-box">
 ERROR 404 : หาพี่ไม่เจอ<br>
-Binary : 01001011 01001110 01001001
 </div><div class="status scan">
 STATUS : WAITING AUTHENTICATION...
 </div><input
@@ -112,7 +111,7 @@ placeholder="ENTER BINARY CODE">
 <input
 type="text"
 id="name"
-placeholder="ENTER SENIOR NAME">
+placeholder="ENTER NAME(ชื่อเล่นพี่รหัส)">
 
 <button onclick="verify()">
 VERIFY ACCESS
@@ -129,7 +128,7 @@ document.getElementById("name").value.trim().toUpperCase();
 if(
 hint === "01001011 01001110 01001001"
 &&
-name === "INK"
+name === "INK,ink,Ink"
 ){
 
 window.location.href = "mission.html";
