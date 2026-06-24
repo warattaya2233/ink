@@ -1,146 +1,141 @@
-<!DOCTYPE html><html lang="th">
+<!DOCTYPE html>
+<html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ภารกิจน้องรหัส</title><style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Consolas, monospace;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ภารกิจน้องรหัส</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Consolas, monospace;
+        }
 
-body{
-background:#000;
-color:#00ff88;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
-}
+        body {
+            background: #000;
+            color: #00ff88;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
 
-body::before{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background:
-linear-gradient(rgba(0,255,136,.08) 1px, transparent 1px),
-linear-gradient(90deg, rgba(0,255,136,.08) 1px, transparent 1px);
-background-size:30px 30px;
-}
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(rgba(0,255,136,.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,136,.08) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
 
-.box{
-width:420px;
-border:1px solid #00ff88;
-padding:25px;
-background:rgba(0,0,0,.9);
-box-shadow:0 0 20px #00ff88;
-z-index:1;
-}
+        .box {
+            width: 420px;
+            border: 1px solid #00ff88;
+            padding: 25px;
+            background: rgba(0,0,0,.9);
+            box-shadow: 0 0 20px #00ff88;
+            z-index: 1;
+        }
 
-.title{
-text-align:center;
-margin-bottom:20px;
-font-size:24px;
-font-weight:bold;
-}
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-.hint-box{
-margin-bottom:15px;
-padding:10px;
-border:1px dashed #00ff88;
-font-size:14px;
-line-height:1.6;
-}
+        .hint-box {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px dashed #00ff88;
+            font-size: 14px;
+            line-height: 1.6;
+        }
 
-.status{
-margin-bottom:15px;
-font-size:14px;
-}
+        .status {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
 
-input{
-width:100%;
-padding:12px;
-margin:10px 0;
-background:#000;
-border:1px solid #00ff88;
-color:#00ff88;
-}
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #000;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+        }
 
-button{
-width:100%;
-padding:12px;
-margin-top:10px;
-background:#00ff88;
-border:none;
-font-weight:bold;
-cursor:pointer;
-}
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #00ff88;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-button:hover{
-opacity:.8;
-}
+        button:hover {
+            opacity: .8;
+        }
 
-#error{
-color:#ff4d4d;
-margin-top:10px;
-text-align:center;
-}
+        #error {
+            color: #ff4d4d;
+            margin-top: 10px;
+            text-align: center;
+        }
 
-.scan{
-animation:blink 1s infinite;
-}
+        .scan {
+            animation: blink 1s infinite;
+        }
 
-@keyframes blink{
-50%{opacity:.3;}
-}
-</style></head>
-<body><div class="box"><div class="title">
-KNI ACCESS SYSTEM
-</div><div class="hint-box">
-ERROR 404 : หาพี่ไม่เจอ<br>
-</div><div class="status scan">
-STATUS : WAITING AUTHENTICATION...
-</div><input
-type="text"
-id="hint"
-placeholder="ENTER BINARY CODE">
+        @keyframes blink {
+            50% { opacity: .3; }
+        }
+    </style>
+</head>
+<body>
 
-<input
-type="text"
-id="name"
-placeholder="ENTER NAME(ชื่อเล่นพี่รหัสภาษาอังกฤษ)">
+    <div class="box">
+        <div class="title">
+            KNI ACCESS SYSTEM
+        </div>
+        <div class="hint-box">
+            ERROR 404 : หาพี่ไม่เจอ<br>
+        </div>
+        <div class="status scan">
+            STATUS : WAITING AUTHENTICATION...
+        </div>
+        
+        <input type="text" id="hint" placeholder="ENTER BINARY CODE">
+        <input type="text" id="name" placeholder="ENTER NAME(ชื่อเล่นพี่รหัสภาษาอังกฤษ)">
 
-<button onclick="verify()">
-VERIFY ACCESS
-</button><div id="error"></div></div><script>
+        <button onclick="verify()">
+            VERIFY ACCESS
+        </button>
+        
+        <div id="error"></div>
+    </div>
 
-function verify(){
+    <script>
+        function verify() {
+            let hint = document.getElementById("hint").value.trim();
+            let name = document.getElementById("name").value.trim().toUpperCase();
 
-let hint =
-document.getElementById("hint").value.trim();
+            // แก้ไขเงื่อนไขการเช็คชื่อเป็น "INK" เพื่อให้กดผ่านได้จริง
+            if (hint === "01001011 01001110 01001001" && name === "INK") {
+                window.location.href = "mission.html";
+            } else {
+                document.getElementById("error").innerHTML = "ERROR 404 : ACCESS DENIED";
+            }
+        }
+    </script>
 
-let name =
-document.getElementById("name").value.trim().toUpperCase();
-
-if(
-hint === "01001011 01001110 01001001"
-&&
-name === "ink,Ink,INK"
-){
-
-window.location.href = "mission.html";
-
-}else{
-
-document.getElementById("error").innerHTML =
-"ERROR 404 : ACCESS DENIED";
-
-}
-
-}
-
-</script></body>
+</body>
 </html>
