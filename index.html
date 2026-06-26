@@ -4,138 +4,170 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ภารกิจน้องรหัส</title>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Consolas, monospace;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Consolas, monospace;
         }
 
-        body {
-            background: #000;
-            color: #00ff88;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+        body{
+            background:#050B17;
+            color:#3DBBFF;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow:hidden;
         }
 
-        body::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
+        body::before{
+            content:"";
+            position:absolute;
+            width:100%;
+            height:100%;
             background:
-                linear-gradient(rgba(0,255,136,.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,255,136,.08) 1px, transparent 1px);
-            background-size: 30px 30px;
+            linear-gradient(rgba(61,187,255,.08) 1px,transparent 1px),
+            linear-gradient(90deg,rgba(61,187,255,.08) 1px,transparent 1px);
+            background-size:30px 30px;
         }
 
-        .box {
-            width: 420px;
-            border: 1px solid #00ff88;
-            padding: 25px;
-            background: rgba(0,0,0,.9);
-            box-shadow: 0 0 20px #00ff88;
-            z-index: 1;
+        .box{
+            width:420px;
+            padding:25px;
+            background:rgba(5,11,23,.92);
+            border:1px solid #3DBBFF;
+            box-shadow:
+                0 0 10px rgba(61,187,255,.8),
+                0 0 30px rgba(61,187,255,.35);
+            z-index:1;
         }
 
-        .title {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: bold;
+        .title{
+            text-align:center;
+            margin-bottom:20px;
+            font-size:24px;
+            font-weight:bold;
+            color:#AEE8FF;
+            text-shadow:
+                0 0 8px #3DBBFF,
+                0 0 15px #3DBBFF;
         }
 
-        .hint-box {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px dashed #00ff88;
-            font-size: 14px;
-            line-height: 1.6;
+        .hint-box{
+            margin-bottom:15px;
+            padding:10px;
+            border:1px dashed #3DBBFF;
+            color:#AEE8FF;
+            line-height:1.6;
+            text-shadow:0 0 6px #3DBBFF;
         }
 
-        .status {
-            margin-bottom: 15px;
-            font-size: 14px;
+        .status{
+            margin-bottom:15px;
+            color:#66D9FF;
+            text-shadow:0 0 8px #3DBBFF;
         }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #000;
-            border: 1px solid #00ff88;
-            color: #00ff88;
+        input{
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            background:#091426;
+            border:1px solid #3DBBFF;
+            color:#AEE8FF;
+            outline:none;
+            transition:.3s;
         }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            background: #00ff88;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
+        input::placeholder{
+            color:#6FCFFF;
         }
 
-        button:hover {
-            opacity: .8;
+        input:focus{
+            box-shadow:0 0 15px #3DBBFF;
         }
 
-        #error {
-            color: #ff4d4d;
-            margin-top: 10px;
-            text-align: center;
+        button{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            background:#3DBBFF;
+            color:#001523;
+            border:none;
+            font-weight:bold;
+            cursor:pointer;
+            transition:.3s;
         }
 
-        .scan {
-            animation: blink 1s infinite;
+        button:hover{
+            background:#66D9FF;
+            box-shadow:0 0 18px #3DBBFF;
         }
 
-        @keyframes blink {
-            50% { opacity: .3; }
+        #error{
+            color:#FF6666;
+            margin-top:10px;
+            text-align:center;
         }
-    </style>
-</head>
-<body>
 
-    <div class="box">
-        <div class="title">
-            KNI ACCESS SYSTEM
-        </div>
-        <div class="hint-box">
-            ERROR 404 : หาพี่ไม่เจอ<br>
-        </div>
-        <div class="status scan">
-            STATUS : WAITING AUTHENTICATION...
-        </div>
-        
-        <input type="text" id="hint" placeholder="ENTER BINARY CODE">
-        <input type="text" id="name" placeholder="ENTER NAME(ชื่อเล่นพี่รหัสภาษาอังกฤษ)">
+        .scan{
+            animation:blink 1s infinite;
+        }
 
-        <button onclick="verify()">
-            VERIFY ACCESS
-        </button>
-        
-        <div id="error"></div>
-    </div>
-
-    <script>
-        function verify() {
-            let hint = document.getElementById("hint").value.trim();
-            let name = document.getElementById("name").value.trim().toUpperCase();
-
-            // แก้ไขเงื่อนไขการเช็คชื่อเป็น "INK" เพื่อให้กดผ่านได้จริง
-            if (hint === "01001011 01001110 01001001" && name === "INK") {
-                window.location.href = "mission.html";
-            } else {
-                document.getElementById("error").innerHTML = "ERROR 404 : ACCESS DENIED";
+        @keyframes blink{
+            50%{
+                opacity:.35;
             }
         }
-    </script>
+
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <div class="title">
+        KNI ACCESS SYSTEM
+    </div>
+
+    <div class="hint-box">
+        ERROR 404 : หาพี่ไม่เจอ
+    </div>
+
+    <div class="status scan">
+        STATUS : WAITING AUTHENTICATION...
+    </div>
+
+    <input type="text" id="hint" placeholder="ENTER BINARY CODE">
+
+    <input type="text" id="name" placeholder="ENTER NAME (ชื่อเล่นพี่รหัสภาษาอังกฤษ)">
+
+    <button onclick="verify()">
+        VERIFY ACCESS
+    </button>
+
+    <div id="error"></div>
+
+</div>
+
+<script>
+function verify(){
+
+    let hint=document.getElementById("hint").value.trim();
+    let name=document.getElementById("name").value.trim().toUpperCase();
+
+    if(hint==="01001011 01001110 01001001" && name==="INK"){
+        window.location.href="mission.html";
+    }else{
+        document.getElementById("error").innerHTML="ERROR 404 : ACCESS DENIED";
+    }
+
+}
+</script>
 
 </body>
 </html>
