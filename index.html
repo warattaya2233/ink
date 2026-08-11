@@ -98,6 +98,8 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             width: 100%;
             margin-top: 10px;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn:active {
@@ -144,16 +146,15 @@
             justify-content: center;
             align-items: center;
             background: conic-gradient(
-                #FFB7B2 0deg 36deg,
-                #FFDAC1 36deg 72deg,
-                #E2F0CB 72deg 108deg,
-                #B5EAD7 108deg 144deg,
-                #C7CEEA 144deg 180deg,
-                #FFB7B2 180deg 216deg,
-                #FFDAC1 216deg 252deg,
-                #E2F0CB 252deg 288deg,
-                #B5EAD7 288deg 324deg,
-                #C7CEEA 324deg 360deg
+                #FFB7B2 0deg 40deg,
+                #FFDAC1 40deg 80deg,
+                #E2F0CB 80deg 120deg,
+                #B5EAD7 120deg 160deg,
+                #C7CEEA 160deg 200deg,
+                #FFB7B2 200deg 240deg,
+                #FFDAC1 240deg 280deg,
+                #E2F0CB 280deg 320deg,
+                #B5EAD7 320deg 360deg
             );
             transition: transform 3s cubic-bezier(0.15, 0.99, 0.18, 0.99);
         }
@@ -191,28 +192,6 @@
             color: var(--pink-accent);
             font-size: 1.1rem;
             min-height: 30px;
-        }
-
-        /* Form Styling */
-        .reply-box {
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        textarea {
-            width: 100%;
-            height: 100px;
-            padding: 12px;
-            border: 2px solid #E0E0E0;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            resize: none;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        textarea:focus {
-            border-color: var(--pink-accent);
         }
 
         .footer-card {
@@ -300,12 +279,16 @@
     <div id="page5" class="page">
         <span class="tag">MESSAGE TO MY KID</span>
         <h1>มุมความในใจของแม่ 💌</h1>
-        <p>พิมพ์บอกรักหรืออยากบอกอะไรลูกคนนี้ เขียนลงตรงนี้ได้เลยน้า</p>
+        <p style="font-size: 1.05rem; font-weight: 600; color: var(--dark-cool); margin-bottom: 8px;">
+            อยากบอกอะไรกับลูกจ๊ะ บอกเถอะน่าาบอกเลยย 🥺✨
+        </p>
+        <p style="font-size: 0.85rem; color: var(--gray-text);">
+            กดปุ่มสีชมพูด้านล่างนี้เพื่อเปิดฟอร์มเขียนบอกรักหรือความในใจให้ลูกได้เลยน้า!
+        </p>
 
-        <div class="reply-box">
-            <textarea id="motherMsg" placeholder="เขียนความในใจถึงลูกตรงนี้ได้เลย..."></textarea>
-            <button class="btn btn-pink" onclick="sendToLine()">ส่งข้อความหาลูก ✨</button>
-        </div>
+        <a href="https://forms.gle/QvBz8b89YSuvUweJ8" target="_blank" class="btn btn-pink">
+            กดตรงนี้เพื่อเปิดแบบฟอร์ม ✍️
+        </a>
 
         <div class="footer-card">
             <p style="margin-bottom: 5px; font-weight: 600; color: var(--dark-cool);">BEST MOTHER EVER</p>
@@ -329,7 +312,6 @@
         "รักแม่ที่ฉุดในโลกกกกกกก 🤍",
         "ค่ารักเอ็ง 200 😘",
         "miss youทิสุดด 🥺",
-        "พาไปกินของอร่อย 1 มื้อ ✨",
         "กอดฟรีตลอดชีวิต 🫂",
         "ห้ามบ่น 1 วันเต็ม 🤫",
         "บัตรตัดรำคาญใช้ได้ 1 ครั้ง 🎫",
@@ -356,22 +338,11 @@
 
         setTimeout(() => {
             const actualDegree = totalDegree % 360;
-            const index = Math.floor((360 - (actualDegree % 360)) / 36) % 10;
+            const index = Math.floor((360 - (actualDegree % 360)) / 40) % 9;
             
             resultText.innerText = rewards[index];
             isSpinning = false;
         }, 3000);
-    }
-
-    function sendToLine() {
-        const msg = document.getElementById('motherMsg').value;
-        if (!msg.trim()) {
-            alert('พิมพ์ข้อความก่อนน้า');
-            return;
-        }
-        // เด้งเข้าแอป Line เพื่อส่งข้อความกลับหาลูกทันที
-        const lineUrl = `https://line.me/R/share?text=${encodeURIComponent('ความในใจจากแม่: ' + msg)}`;
-        window.location.href = lineUrl;
     }
 </script>
 
